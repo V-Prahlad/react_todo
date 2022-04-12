@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import { FcCheckmark } from "react-icons/fc";
+import { FcCheckmark } from 'react-icons/fc';
 
 function TodoList() {
   const [input, setInput] = useState();
   const [listItem, setListItem] = useState(() => {
-    let savedInput = localStorage.getItem("listItem");
+    let savedInput = localStorage.getItem('listItem');
     let value = JSON.parse(savedInput);
-    return [...value] || ["Hello"];
+    return value || [];
   });
 
   useEffect(() => {
     // storing input name
-    localStorage.setItem("listItem", JSON.stringify(listItem));
+    localStorage.setItem('listItem', JSON.stringify(listItem));
   }, [listItem]);
 
   const handleChange = (e) => {
@@ -55,7 +55,7 @@ function TodoList() {
         <span>
           {listItem.map((item, key) => {
             return (
-              <li className={item.completed ? "checked-todo" : ""}>
+              <li className={item.completed ? 'checked-todo' : ''}>
                 {item.name}
                 <FcCheckmark
                   className="checked"
